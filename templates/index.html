@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>File Upload and Download</title>
+  </head>
+  <body>
+    <h1>Upload new File</h1>
+    <form method="post" enctype="multipart/form-data">
+      <input type="file" name="file">
+      <input type="submit" value="Upload">
+    </form>
+    <h1>Download Files</h1>
+    <ul>
+      {% for file in files %}
+        <li>
+          <a href="{{ url_for('uploaded_file', filename=file) }}">{{ file }}</a>
+          <form method="post" action="{{ url_for('delete_file', filename=file) }}" style="display:inline;">
+            <input type="submit" value="Delete">
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
